@@ -1,0 +1,80 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #000;
+}
+
+ul{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 0;
+    margin: 0;
+    width: 600px;
+    height: 150px;
+}
+ul li{
+    list-style: none;
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    margin: -100px;
+    background-color: #000;
+    transform: rotate(45deg);
+    transition: .5s;
+    overflow: hidden;
+    opacity: .5;
+}
+ul li:hover{
+    opacity: 1;
+}
+ul li:nth-child(odd){
+    top: 0;
+}
+ul li:nth-child(even){
+    bottom: 0;
+}
+ul li.item1{
+    left: 0;
+}
+ul li.item2{
+    left: 25%;
+}
+ul li.item3{
+    left: 50%;
+}
+ul li.item4{
+    left: 75%;
+}
+ul li.item5{
+    left: 100%;
+}
+
+ul li.item1 .bg{
+    background-image: url('aizen.png');
+}
+ul li.item2 .bg{
+    background-image: url('gojo.jpg');
+}
+ul li.item3 .bg{
+    background-image: url('toji.jpg');
+}
+ul li.item4 .bg{
+    background-image: url('sukuna.jpg');
+}
+ul li.item5 .bg{
+    background-image: url('yuji.jpg');
+}
+
+ul li .bg{
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    transform: rotate(-45deg) scale(1.4);
+}
