@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Carousel</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <input type="radio" name="slider" id="item-1" checked />
+      <input type="radio" name="slider" id="item-2" />
+      <input type="radio" name="slider" id="item-3" />
+      <input type="radio" name="slider" id="item-4" />
+      <input type="radio" name="slider" id="item-5" />
+      <input type="radio" name="slider" id="item-6" />
+      <div class="cards">
+        <label for="item-1" class="card"
+          ><img src="./toji.jpg" alt="toji"
+        /></label>
+        <label for="item-2" class="card"
+          ><img src="./gojo.jpg" alt="toji"
+        /></label>
+        <label for="item-3" class="card"
+          ><img src="./sukuna.jpg" alt="toji"
+        /></label>
+        <label for="item-4" class="card"><img src="./toji.jpg" alt="toji"></label>
+        <label for="item-5" class="card"><img src="./gojo.jpg" alt="toji"></label>
+        <label for="item-6" class="card"><img src="./sukuna.jpg" alt="toji"></label>
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const radios = document.querySelectorAll("input[name=slider]");
+        const cards = document.querySelectorAll(".card");
+        let i = 0;
+        setInterval(() => {
+            removePreviousCardStyle(i-1 % cards.length);
+            setCurrentCardStyle(i % cards.length);
+            setNextCardStyle(i % cards.length);
+            setNextNextCardStyle(i % cards.length);
+            i = (i+1)%cards.length;
+        },1000)
+        function setNextCardStyle(i){
+            if(i === cards.length - 1) i = 0;
+            cards[i+1].style.display = "block";
+            cards[i+1].style.transform = "translatex(20%) scale(0.8)";
+            cards[i+1].style.opacity = "0.4";
+            cards[i+1].style.zIndex = "0";
+        }
+        function setNextNextCardStyle(i){
+            if(i === cards.length - 1) i = 1;
+            if(i === cards.length - 2) i = 0;
+            cards[i+2].style.display = "block";
+            cards[i+2].style.transform = "translatex(40%) scale(0.6)";
+            cards[i+2].style.opacity = "0.4";
+            cards[i+2].style.zIndex = "0";
+        }
+        function setCurrentCardStyle(i){
+            radios[i].checked = true;
+            cards[i].style.display = "block";
+            cards[i].style.transform = "translatex(0) scale(1)";
+            cards[i].style.opacity = "1";
+            cards[i].style.zIndex = "1";
+        }
+        function removePreviousCardStyle(i){
+            if(i<0) i = cards.length - 1;
+            cards[i].style.display = "none";
+            cards[i].style.transform = "";
+            cards[i].style.opacity = "";
+            cards[i].style.zIndex = "";
+        }
+    });
+    </script>
+  </body>
+</html>
+<!-- transform: translatex(0) scale(1);
+  opacity: 1;
+  z-index: 1; -->
