@@ -37,15 +37,15 @@
         let interval;
         startAnimation();
         function setNextCardStyle(i){
-            if(i === cards.length - 1) i = 0;
+            if(i === cards.length - 1) i = -1;
             cards[i+1].style.display = "block";
             cards[i+1].style.transform = "translatex(20%) scale(0.8)";
             cards[i+1].style.opacity = "0.4";
             cards[i+1].style.zIndex = "0";
         }
         function setNextNextCardStyle(i){
-            if(i === cards.length - 1) i = 1;
-            if(i === cards.length - 2) i = 0;
+            if(i === cards.length - 1) i = -1;
+            if(i === cards.length - 2) i = -2;
             cards[i+2].style.display = "block";
             cards[i+2].style.transform = "translatex(40%) scale(0.6)";
             cards[i+2].style.opacity = "0.4";
@@ -59,23 +59,24 @@
             cards[i].style.zIndex = "1";
         }
         function removePreviousCardStyle(i){
-            if(i<0) i = cards.length - 1;
-            cards[i].style.display = "none";
-            cards[i].style.transform = "";
-            cards[i].style.opacity = "";
-            cards[i].style.zIndex = "";
+            if(i === 0) i = cards.length - 1;
+            else i = i - 1;
+            cards[i].style.display = "block";
+            cards[i].style.transform = "translatex(40%) scale(0)";
+            cards[i].style.opacity = "0.4";
+            cards[i].style.zIndex = "0";
         }
         function stopAnimation(){
             clearInterval(interval);
         };
         function startAnimation(){
             interval = setInterval(() => {
-                removePreviousCardStyle(i-1 % cards.length);
+                removePreviousCardStyle(i % cards.length);
                 setCurrentCardStyle(i % cards.length);
                 setNextCardStyle(i % cards.length);
                 setNextNextCardStyle(i % cards.length);
                 i = (i+1)%cards.length;
-            },2000);
+            },3500);
         }
         cards.forEach((card,i) => {
             card.addEventListener("mouseenter",() => {

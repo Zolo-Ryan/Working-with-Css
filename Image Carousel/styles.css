@@ -40,7 +40,7 @@ input[type="radio"] {
   left: 0;
   right: 0;
   cursor: pointer;
-  transition: 0.4s ease;
+  transition: 0.8s ease;
   margin: auto;
   display: none;
 }
